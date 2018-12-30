@@ -1,0 +1,17 @@
+{
+  "name": "botsa",
+  "version": "1.0.0",
+  "description": "testing bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "Corentin Skyy Mace",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
