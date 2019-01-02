@@ -48,6 +48,7 @@ client.on('message', message => {
       .addField(".createclan [nom] COLOR ", "Nom sans espace, couleur en anglais en majuscule ou en hexadecimal")
       .addField(".wfu, .au, .snx", "Demande au channel privé du clan si vous pouvez le rejoindre")
       .addField(".accept [@user], .refuse [@user]", "Accepte ou refuse dans votre clan la personne que vous mentionnez")
+      .addField(".fire [@user]","Vire du clan la personne qui à été mentionnée")
       .addField(".info", "Affiche les informations du serveur");
       message.channel.send({embed});
 
@@ -66,11 +67,11 @@ client.on('message', message => {
    if (message.content.startsWith(prefix + "createclan")) {
      const args = message.content.slice(prefix.length).split(' ');
      const command = args.shift().toLowerCase();
-     message.channel.send(`Command name: ${command}\nArguments: ${args}`);
+     message.channel.send(`Commande : ${command}\nArguments: ${args}`);
 
      message.guild.createRole({
   name: args[0],
-  color: args[1],
+  color: args[1].toUpperCase(),
 })
   .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
   .catch(console.error)
@@ -108,8 +109,8 @@ client.on('message', message => {
    }
    if (message.content.startsWith(prefix + "fire") && message.member.roles.has("528573193510846465") && message.member.roles.has("528892097668055042")) {//Remplacer par le rôle de la WFU et Leader de clan
      member.removeRole("528573193510846465"); //Remplacer par le rôle de la Waifu Army
-
      message.reply(`${user.tag} à été viré du clan !`);
+     member.send("Le Leader du clan à décidé de te virer. Désolé.");
 
    }
    if (message.content.startsWith(prefix + "refuse") && message.member.roles.has("528573193510846465") && message.member.roles.has("528892097668055042")) {//Remplacer par le rôle de la WFU et Leader de clan
@@ -123,6 +124,7 @@ client.on('message', message => {
    if (message.content.startsWith(prefix + "fire") && message.member.roles.has("528573281268137984") && message.member.roles.has("528892097668055042")) { //Remplacer par le rôle de la AU et Leader de clan
      member.removeRole("528573281268137984"); //Remplacer par le rôle de AU
      message.reply(`${user.tag} à été viré du clan`);
+     member.send("Le Leader du clan à décidé de te virer. Désolé.");
    }
    if (message.content.startsWith(prefix + "refuse") && message.member.roles.has("528573281268137984") && message.member.roles.has("528892097668055042")) { //Remplacer par le rôle de la WFU et Leader de clan
      member.send("Désolé mais tu n'as pas été accepté à l'Arcane de l'Umbra");
@@ -135,6 +137,7 @@ client.on('message', message => {
    if (message.content.startsWith(prefix + "fire") && message.member.roles.has("528573233528700948") && message.member.roles.has("528892097668055042")) { //Remplacer par le rôle de snx et Leader de clan
      member.removeRole("528573233528700948"); //Remplacer par le role de SNX
      message.reply(`${user.tag} à été viré du clan`);
+     member.send("Le Leader du clan à décidé de te virer. Désolé.");
    }
    if (message.content.startsWith(prefix + "refuse") && message.member.roles.has("528573233528700948")&& message.member.roles.has("528892097668055042")) { //Remplacer par le rôle de snx et Leader de clan
      member.send("Désolé mais tu n'as pas été accepté au snx gang");
